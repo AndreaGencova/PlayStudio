@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class HallOfFame {
 	private String game;
-	
+
 	public HallOfFame(String game) {
 		this.game = game;
 	}
@@ -13,6 +13,11 @@ public abstract class HallOfFame {
 	public abstract void addScore(String name, int time) throws Exception;
 
 	public abstract List<UserScore> loadScore() throws Exception;
+
+	public abstract void loadComment(String name, String game, String commentar) throws Exception;
+
+	public abstract void loadRating(String name, String game, int rating) throws Exception;
+
 
 	@Override
 	public String toString() {
@@ -35,6 +40,7 @@ public abstract class HallOfFame {
 	public String getGame() {
 		return game;
 	}
+
 	public void setGame(String game) {
 		this.game = game;
 	}

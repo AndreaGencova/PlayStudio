@@ -2,7 +2,6 @@ package fifteenPuzle.consoleui;
 
 import java.util.Scanner;
 
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +37,14 @@ public class PuzzleConsoleUI {
 			try {
 				hallOfFame.addScore(name, field.getPlayingSeconds());
 				hallOfFame.loadScore();
+
+				System.out.println("Insert your comment: ");
+				String comm = new Scanner(System.in).nextLine();
+				hallOfFame.loadComment(name, field.getGame(), comm);
+
+				System.out.println("Rating: ");
+				int rate = new Scanner(System.in).nextInt();
+				hallOfFame.loadRating("anonym2", field.getGame(), rate);
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();
