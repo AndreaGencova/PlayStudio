@@ -44,7 +44,7 @@ public class PuzzleConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.loadRating("anonym2", field.getGame(), rate);
+				hallOfFame.setRating("anonym2", field.getGame(), rate);
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();

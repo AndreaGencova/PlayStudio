@@ -41,7 +41,7 @@ public class PexesoConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.loadRating("anonym3", field.getGame(), rate);
+				hallOfFame.setRating("anonym3", field.getGame(), rate);
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();

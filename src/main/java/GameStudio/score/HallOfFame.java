@@ -16,8 +16,7 @@ public abstract class HallOfFame {
 
 	public abstract void loadComment(String name, String game, String commentar) throws Exception;
 
-	public abstract void loadRating(String name, String game, int rating) throws Exception;
-
+	public abstract void setRating(String name, String game, int rating) throws Exception;
 
 	@Override
 	public String toString() {

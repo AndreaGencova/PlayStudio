@@ -43,8 +43,15 @@ public class HallOfFameHibernate extends HallOfFame {
 
 	@Transactional
 	@Override
-	public void loadRating(String name, String game, int rating) throws Exception {
-		em.persist(new Rating(game, name, rating));
+	public void setRating(String name, String game, int rating) throws Exception {
+		List<Rating> list = em.createQuery("select r from Rating r where game = :game and user = :name", Rating.class)
+				.setParameter("game", game).setParameter("name", name).getResultList();
+
+		if (list.isEmpty())
+			em.persist(new Rating(game, name, rating));
+		else
+			list.get(0).setRating(rating);
+
 	}
 
 }

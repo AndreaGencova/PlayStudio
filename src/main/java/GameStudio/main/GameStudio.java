@@ -2,6 +2,8 @@ package GameStudio.main;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
 import fifteenPuzle.consoleui.PuzzleConsoleUI;
 import minesweeper.consoleui.MineConsoleUI;
 import pexeso.consoleui.PexesoConsoleUI;
@@ -11,8 +13,6 @@ public class GameStudio {
 	private MineConsoleUI mui;
 	private PuzzleConsoleUI pui;
 	private PexesoConsoleUI peui;
-	
-	
 
 	public MineConsoleUI getMui() {
 		return mui;

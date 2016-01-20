@@ -17,7 +17,7 @@ public class Rating {
 	@Column(name = "game")
 	private String game;
 
-	@Column(name = "user", unique = true)
+	@Column(name = "user")
 	private String user;
 
 	@Column(name = "rating")

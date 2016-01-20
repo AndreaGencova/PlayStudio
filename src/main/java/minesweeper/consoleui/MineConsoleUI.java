@@ -47,7 +47,7 @@ public class MineConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.loadRating("anonym", field.getGame(), rate);
+				hallOfFame.setRating("anonym", field.getGame(), rate);
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();
