@@ -21,6 +21,14 @@ public class PuzzleConsoleUI {
 	public void setHallOfFame(HallOfFame hallOfFame) {
 		this.hallOfFame = hallOfFame;
 	}
+	public double showRating() {
+		try {
+			return hallOfFame.average(field.getGame());
+		} catch (Exception e) {
+			System.err.println("Average rating is not available");
+		}
+		return 0;
+	}
 
 	public void play() {
 		show();
@@ -44,7 +52,12 @@ public class PuzzleConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.setRating("anonym2", field.getGame(), rate);
+
+				if (rate > 10 || rate < 0)
+					System.err.println("Rating is in bad range. Range must be 0-10");
+				else
+					hallOfFame.setRating("aaaaaaaaaaa", field.getGame(), rate);
+
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();

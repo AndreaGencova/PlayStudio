@@ -21,6 +21,15 @@ public class PexesoConsoleUI {
 		this.hallOfFame = hallOfFame;
 	}
 
+	public double showRating() {
+		try {
+			return hallOfFame.average(field.getGame());
+		} catch (Exception e) {
+			System.err.println("Average rating is not available");
+		}
+		return 0;
+	}
+
 	public void play() {
 		show();
 
@@ -41,7 +50,12 @@ public class PexesoConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.setRating("anonym3", field.getGame(), rate);
+
+				if (rate > 10 || rate < 0)
+					System.err.println("Rating is in bad range. Range must be 0-10");
+				else
+					hallOfFame.setRating("bbbbbbbbbbbbbb", field.getGame(), rate);
+
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();

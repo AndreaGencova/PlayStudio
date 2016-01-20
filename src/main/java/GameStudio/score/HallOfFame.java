@@ -18,6 +18,8 @@ public abstract class HallOfFame {
 
 	public abstract void setRating(String name, String game, int rating) throws Exception;
 
+	public abstract double average(String game) throws Exception;
+	
 	@Override
 	public String toString() {
 		List<UserScore> scores;

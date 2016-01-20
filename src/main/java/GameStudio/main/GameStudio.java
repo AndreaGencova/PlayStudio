@@ -42,9 +42,9 @@ public class GameStudio {
 
 	public void play() {
 		System.out.println("Choose Game: ");
-		System.out.println("[A] - for MINESWEEPER");
-		System.out.println("[B] - for FIFTEEN PUZZLE");
-		System.out.println("[C] - for PEXESO");
+		System.out.println("[A] - for MINESWEEPER [rating:  " + mui.showRating() + " /10]");
+		System.out.println("[B] - for FIFTEEN PUZZLE [rating:  " + pui.showRating() + " /10]");
+		System.out.println("[C] - for PEXESO [rating:  " + peui.showRating() + " /10]");
 
 		String selection = sc.next().toUpperCase();
 		switch (selection) {

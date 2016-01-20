@@ -51,7 +51,20 @@ public class HallOfFameHibernate extends HallOfFame {
 			em.persist(new Rating(game, name, rating));
 		else
 			list.get(0).setRating(rating);
+	}
 
+	@Transactional
+	@Override
+	public double average(String game) throws Exception {
+		List<Rating> list = em.createQuery("select r from Rating r where game = :game", Rating.class)
+				.setParameter("game", game).getResultList();
+
+		int sucet = 0;
+		for (Rating r : list)
+			sucet += r.getRating();
+
+		double avg = (double) sucet / (double) list.size();
+		return avg;
 	}
 
 }

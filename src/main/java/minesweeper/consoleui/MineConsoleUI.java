@@ -27,13 +27,21 @@ public class MineConsoleUI {
 		this.hallOfFame = hallOfFame;
 	}
 
+	public double showRating() {
+		try {
+			return hallOfFame.average(field.getGame());
+		} catch (Exception e) {
+			System.err.println("Average rating is not available");
+		}
+		return 0;
+	}
+
 	public void play() {
 		show();
 		while (field.getState() == GameState.PLAYING) {
 			processInput();
 			show();
 		}
-		// show();
 
 		if (field.getState() == GameState.SOLVED) {
 			String name = System.getProperty("user.name");
@@ -47,7 +55,12 @@ public class MineConsoleUI {
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
-				hallOfFame.setRating("anonym", field.getGame(), rate);
+
+				if (rate > 10 || rate < 0)
+					System.err.println("Rating is in bad range. Range must be 0-10");
+				else
+					hallOfFame.setRating("ccccccccc", field.getGame(), rate);
+
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();
@@ -55,6 +68,7 @@ public class MineConsoleUI {
 
 			System.out.println("Vyhral si!");
 			System.out.println(hallOfFame);
+
 		} else {
 			System.out.println("Prehral si!");
 		}
