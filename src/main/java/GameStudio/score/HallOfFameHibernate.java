@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,16 +56,17 @@ public class HallOfFameHibernate extends HallOfFame {
 
 	@Transactional
 	@Override
-	public double average(String game) throws Exception {
-		List<Rating> list = em.createQuery("select r from Rating r where game = :game", Rating.class)
-				.setParameter("game", game).getResultList();
+	public double averageByAgragationFunction(String game) throws Exception {
+		Query q = em.createQuery("select avg(r.rating) from Rating r where game = :game").setParameter("game", game);
+		Double result = (Double) q.getSingleResult();
+		return result;
+	}
 
-		int sucet = 0;
-		for (Rating r : list)
-			sucet += r.getRating();
-
-		double avg = (double) sucet / (double) list.size();
-		return avg;
+	@Transactional
+	@Override
+	public Long countOfVoters(String game) throws Exception {
+		return (Long) em.createQuery("select count(r) from Rating r where game = :game").setParameter("game", game)
+				.getSingleResult();
 	}
 
 }

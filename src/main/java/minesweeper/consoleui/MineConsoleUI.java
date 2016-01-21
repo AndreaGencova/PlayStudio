@@ -29,11 +29,20 @@ public class MineConsoleUI {
 
 	public double showRating() {
 		try {
-			return hallOfFame.average(field.getGame());
+			return hallOfFame.averageByAgragationFunction(field.getGame());
 		} catch (Exception e) {
 			System.err.println("Average rating is not available");
 		}
 		return 0;
+	}
+
+	public Long showVoters() {
+		try {
+			return hallOfFame.countOfVoters(field.getGame());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void play() {

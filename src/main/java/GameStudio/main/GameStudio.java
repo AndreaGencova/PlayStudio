@@ -2,16 +2,22 @@ package GameStudio.main;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fifteenPuzle.consoleui.PuzzleConsoleUI;
 import minesweeper.consoleui.MineConsoleUI;
 import pexeso.consoleui.PexesoConsoleUI;
 
+@Component
 public class GameStudio {
-
+	@Autowired
 	private MineConsoleUI mui;
+
+	@Autowired
 	private PuzzleConsoleUI pui;
+
+	@Autowired
 	private PexesoConsoleUI peui;
 
 	public MineConsoleUI getMui() {
@@ -42,9 +48,12 @@ public class GameStudio {
 
 	public void play() {
 		System.out.println("Choose Game: ");
-		System.out.println("[A] - for MINESWEEPER [rating:  " + mui.showRating() + " /10]");
-		System.out.println("[B] - for FIFTEEN PUZZLE [rating:  " + pui.showRating() + " /10]");
-		System.out.println("[C] - for PEXESO [rating:  " + peui.showRating() + " /10]");
+		System.out.println("[A] - for MINESWEEPER [rating:  " + mui.showRating() + " /10]" + " Number of voters: "
+				+ mui.showVoters());
+		System.out.println("[B] - for FIFTEEN PUZZLE [rating:  " + pui.showRating() + " /10]" + " Number of voters: "
+				+ pui.showVoters());
+		System.out.println("[C] - for PEXESO [rating:  " + peui.showRating() + " /10]" + " Number of voters: "
+				+ peui.showVoters());
 
 		String selection = sc.next().toUpperCase();
 		switch (selection) {
