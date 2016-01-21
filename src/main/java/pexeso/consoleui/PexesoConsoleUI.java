@@ -54,7 +54,7 @@ public class PexesoConsoleUI {
 				if (rate > 10 || rate < 0)
 					System.err.println("Rating is in bad range. Range must be 0-10");
 				else
-					hallOfFame.setRating("bbbbbbbbbbbbbb", field.getGame(), rate);
+					hallOfFame.setRating("user3", field.getGame(), rate);
 
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");

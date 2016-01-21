@@ -59,7 +59,7 @@ public class MineConsoleUI {
 				if (rate > 10 || rate < 0)
 					System.err.println("Rating is in bad range. Range must be 0-10");
 				else
-					hallOfFame.setRating("ccccccccc", field.getGame(), rate);
+					hallOfFame.setRating("user2", field.getGame(), rate);
 
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
