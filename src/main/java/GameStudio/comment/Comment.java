@@ -1,4 +1,6 @@
-package GameStudio.score.details;
+package GameStudio.comment;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,7 +69,16 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [user=" + user + ", game=" + game + ", comment=" + comment + "]";
+		return "Comment: " + user + ", " + game + ", " + comment;
 	}
 
+	public String toStringArray(List<Comment> com) {
+		StringBuilder sb = new StringBuilder();
+
+		for (Comment c : com){
+			sb.append(c.toString());
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 }

@@ -2,7 +2,7 @@ package fifteenPuzle.core;
 
 import java.util.Random;
 
-import GameStudio.score.GameState;
+import GameStudio.states.GameState;
 
 public class PuzzleField {
 

@@ -2,41 +2,25 @@ package pexeso.consoleui;
 
 import java.util.Scanner;
 
-import GameStudio.score.GameState;
-import GameStudio.score.HallOfFame;
+import GameStudio.comment.CommentService;
+import GameStudio.comment.CommentServiceImpl;
+import GameStudio.console.MainConsole;
+import GameStudio.rating.RatingService;
+import GameStudio.rating.RatingServiceImpl;
+import GameStudio.score.HallOfFameAbs;
+import GameStudio.score.HallOfFameService;
+import GameStudio.states.GameState;
 import pexeso.core.Card;
 import pexeso.core.PexesoField;
 
-public class PexesoConsoleUI {
+public class PexesoConsoleUI extends MainConsole {
 	private PexesoField field;
 	// private static final Pattern INPUT_PATTERN = Pattern.compile("([WSAD])");
-	private HallOfFame hallOfFame;
+
 	private static Scanner sc = new Scanner(System.in);
 
 	public PexesoConsoleUI(PexesoField field) {
 		this.field = field;
-	}
-
-	public void setHallOfFame(HallOfFame hallOfFame) {
-		this.hallOfFame = hallOfFame;
-	}
-
-	public double showRating() {
-		try {
-			return hallOfFame.averageByAgragationFunction(field.getGame());
-		} catch (Exception e) {
-			System.err.println("Average rating is not available");
-		}
-		return 0;
-	}
-
-	public Long showVoters() {
-		try {
-			return hallOfFame.countOfVoters(field.getGame());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public void play() {
@@ -50,12 +34,12 @@ public class PexesoConsoleUI {
 		if (field.getState() == GameState.SOLVED) {
 			String name = System.getProperty("user.name");
 			try {
-				hallOfFame.addScore(name, field.getPlayingSeconds());
-				hallOfFame.loadScore();
+				getHallOfFame().addScore(name, field.getPlayingSeconds());
+				getHallOfFame().loadScore();
 
 				System.out.println("Insert your comment: ");
 				String comm = new Scanner(System.in).nextLine();
-				hallOfFame.loadComment(name, field.getGame(), comm);
+				getComment().addComment(name, field.getGame(), comm);
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
@@ -63,15 +47,16 @@ public class PexesoConsoleUI {
 				if (rate > 10 || rate < 0)
 					System.err.println("Rating is in bad range. Range must be 0-10");
 				else
-					hallOfFame.setRating("user3", field.getGame(), rate);
+					getRating().setRating("user3", field.getGame(), rate);
 
+				System.out.println(getComment().loadComment().toString());
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
 				e.printStackTrace();
 			}
 
 			System.out.println("Vyhral si!");
-			System.out.println(hallOfFame);
+
 		} else {
 			System.out.println("Prehral si!");
 		}
@@ -162,16 +147,17 @@ public class PexesoConsoleUI {
 	}
 
 	private void showHeader() {
-		final String hSep = "\t";
+		System.out.println("Time: " + field.getPlayingSeconds() + " s");
 
+		System.out.print(" ");
 		for (int column = 0; column < field.getColumnCount(); column++) {
-			System.out.print(hSep + column);
+			System.out.print(" " + column);
 		}
 		System.out.println();
+	}
 
-		for (int i = 0; i < field.getColumnCount(); i++)
-			System.out.print("---------");
-		System.out.println();
-
+	@Override
+	public String getGameName() {
+		return field.getGame();
 	}
 }

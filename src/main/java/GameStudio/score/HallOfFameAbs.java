@@ -3,24 +3,12 @@ package GameStudio.score;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HallOfFame {
+public abstract class HallOfFameAbs implements HallOfFameService {
 	private String game;
 
-	public HallOfFame(String game) {
+	public HallOfFameAbs(String game) {
 		this.game = game;
 	}
-
-	public abstract void addScore(String name, int time) throws Exception;
-
-	public abstract List<UserScore> loadScore() throws Exception;
-
-	public abstract void loadComment(String name, String game, String commentar) throws Exception;
-
-	public abstract void setRating(String name, String game, int rating) throws Exception;
-
-	public abstract double averageByAgragationFunction(String game) throws Exception;
-
-	public abstract Long countOfVoters(String game) throws Exception;
 
 	@Override
 	public String toString() {

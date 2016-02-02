@@ -2,8 +2,8 @@ package pexeso.core;
 
 import java.util.Random;
 
-import GameStudio.score.GameState;
-import GameStudio.score.TileState;
+import GameStudio.states.GameState;
+import GameStudio.states.TileState;
 
 public class PexesoField {
 

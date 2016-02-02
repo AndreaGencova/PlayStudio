@@ -1,48 +1,25 @@
 package minesweeper.consoleui;
 
 import java.util.Scanner;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import GameStudio.score.GameState;
-import GameStudio.score.HallOfFame;
-
+import GameStudio.comment.CommentService;
+import GameStudio.console.MainConsole;
+import GameStudio.rating.RatingService;
+import GameStudio.score.HallOfFameService;
+import GameStudio.states.GameState;
 import minesweeper.core.Clue;
 import minesweeper.core.MineField;
 import minesweeper.core.Tile;
 
-public class MineConsoleUI {
+public class MineConsoleUI extends MainConsole {
 	private MineField field;
-
-	private HallOfFame hallOfFame;
 
 	private static final Pattern INPUT_PATTERN = Pattern.compile("([O|M])([A-I])([0-8])");
 
 	public MineConsoleUI(MineField field) {
 		this.field = field;
-	}
-
-	public void setHallOfFame(HallOfFame hallOfFame) {
-		this.hallOfFame = hallOfFame;
-	}
-
-	public double showRating() {
-		try {
-			return hallOfFame.averageByAgragationFunction(field.getGame());
-		} catch (Exception e) {
-			System.err.println("Average rating is not available");
-		}
-		return 0;
-	}
-
-	public Long showVoters() {
-		try {
-			return hallOfFame.countOfVoters(field.getGame());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public void play() {
@@ -55,12 +32,12 @@ public class MineConsoleUI {
 		if (field.getState() == GameState.SOLVED) {
 			String name = System.getProperty("user.name");
 			try {
-				hallOfFame.addScore(name, field.getPlayingSeconds());
-				hallOfFame.loadScore();
+				getHallOfFame().addScore(name, field.getPlayingSeconds());
+				getHallOfFame().loadScore();
 
 				System.out.println("Insert your comment: ");
 				String comm = new Scanner(System.in).nextLine();
-				hallOfFame.loadComment(name, field.getGame(), comm);
+				getComment().addComment(name, field.getGame(), comm);
 
 				System.out.println("Rating: ");
 				int rate = new Scanner(System.in).nextInt();
@@ -68,7 +45,9 @@ public class MineConsoleUI {
 				if (rate > 10 || rate < 0)
 					System.err.println("Rating is in bad range. Range must be 0-10");
 				else
-					hallOfFame.setRating("user2", field.getGame(), rate);
+					getRating().setRating("user2", field.getGame(), rate);
+				
+				getComment().loadComment();
 
 			} catch (Exception e) {
 				System.err.println("Nepodarilo sa ulozit score");
@@ -76,7 +55,6 @@ public class MineConsoleUI {
 			}
 
 			System.out.println("Vyhral si!");
-			System.out.println(hallOfFame);
 
 		} else {
 			System.out.println("Prehral si!");
@@ -148,5 +126,10 @@ public class MineConsoleUI {
 			System.out.print(" " + column);
 		}
 		System.out.println();
+	}
+
+	@Override
+	public String getGameName() {
+		return field.getGame();
 	}
 }

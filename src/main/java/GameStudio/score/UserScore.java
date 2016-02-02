@@ -2,12 +2,12 @@ package GameStudio.score;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "score")
 public class UserScore implements Serializable, Comparable<UserScore> {
@@ -17,8 +17,13 @@ public class UserScore implements Serializable, Comparable<UserScore> {
 	@GeneratedValue
 	private int id;
 
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "time")
 	private int time;
+
+	@Column(name = "game")
 	private String game;
 
 	public UserScore() {

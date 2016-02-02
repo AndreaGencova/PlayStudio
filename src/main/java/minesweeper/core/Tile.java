@@ -1,6 +1,6 @@
 package minesweeper.core;
 
-import GameStudio.score.TileState;
+import GameStudio.states.TileState;
 
 public abstract class Tile {
 	private TileState state = TileState.CLOSED;

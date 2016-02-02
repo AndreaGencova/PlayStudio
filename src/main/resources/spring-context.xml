@@ -52,29 +52,38 @@
 		<constructor-arg value="Pexeso" />
 	</bean>
 
+	<bean id="rating" class="GameStudio.rating.RatingServiceImpl" />
+	<bean id="comment" class="GameStudio.comment.CommentServiceImpl" />
+
 
 	<bean id="minesConsole" class="minesweeper.consoleui.MineConsoleUI">
 		<constructor-arg ref="minesField" />
 		<property name="hallOfFame" ref="hallOfFameDTBMines" />
+		<property name="rating" ref="rating" />
+		<property name="comment" ref="comment" />
 
 	</bean>
 
 	<bean id="puzzleConsole" class="fifteenPuzle.consoleui.PuzzleConsoleUI">
 		<constructor-arg ref="puzzleField" />
 		<property name="hallOfFame" ref="hallOfFameDTBPuzzle" />
+		<property name="rating" ref="rating" />
+		<property name="comment" ref="comment" />
 	</bean>
 
 	<bean id="pexesoConsole" class="pexeso.consoleui.PexesoConsoleUI">
 		<constructor-arg ref="pexesoField" />
 		<property name="hallOfFame" ref="hallOfFameDTBPexeso" />
+		<property name="rating" ref="rating" />
+		<property name="comment" ref="comment" />
 	</bean>
 
 
 
-<!-- 	<bean id="gameStudio" class="GameStudio.main.GameStudio"> -->
-<!-- 		<property name="mui" ref="minesConsole" /> -->
-<!-- 		<property name="pui" ref="puzzleConsole" /> -->
-<!-- 		<property name="peui" ref="pexesoConsole" /> -->
-<!-- 	</bean> -->
+	<!-- <bean id="gameStudio" class="GameStudio.main.GameStudio"> -->
+	<!-- <property name="mui" ref="minesConsole" /> -->
+	<!-- <property name="pui" ref="puzzleConsole" /> -->
+	<!-- <property name="peui" ref="pexesoConsole" /> -->
+	<!-- </bean> -->
 
 </beans>

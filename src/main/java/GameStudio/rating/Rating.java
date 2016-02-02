@@ -1,4 +1,4 @@
-package GameStudio.score.details;
+package GameStudio.rating;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

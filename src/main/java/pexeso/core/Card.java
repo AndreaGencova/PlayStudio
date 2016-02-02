@@ -1,6 +1,6 @@
 package pexeso.core;
 
-import GameStudio.score.TileState;
+import GameStudio.states.TileState;
 
 public class Card {
 	private TileState state = TileState.CLOSED;
